@@ -1,0 +1,124 @@
+#: kivy 2.0
+#: include widgets/navbuttons.kv
+
+#importing page views
+#: import FirstView views.firstview.FirstView
+#: import SecondView views.secondview.SecondView
+
+
+ScreenManager:
+    FirstView:
+    SecondView:
+
+<navbardemo>: 
+    spacing: dp(20)
+   # setting main window background color
+    canvas.before:
+        Color:
+            rgba: ( 30/255, 30/255, 30/255,1)
+        Rectangle:
+            #source: "image/bg.jpg" -- use this if you want to use image for
+            pos:self.pos
+            size: self.size
+    BoxLayout:
+        id: nav_menu
+        orientation: 'vertical'
+        size_hint_x: None
+        #setting side nav window width
+        width: dp(170)
+        #setting side nav window background color
+        canvas.before:
+            Color:
+                rgba: (23/255, 23/255, 23/255,1)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [0,5,5,0]         
+        BoxLayout:
+            id: logo 
+            size_hint_y: None
+            height: dp(82)
+            AnchorLayout:
+                size_hint: 1 , 1
+                padding: dp(10)
+                #Image:
+                #    source:'images/logo.png'
+                Label:
+                    text: 'LOGO'
+        BoxLayout: 
+            id: draw_line
+            padding: [dp(15),dp(15),dp(15),dp(0)]  
+            size_hint_y: None
+            height: dp(0.5)        
+            BoxLayout:
+                size_hint_y: None
+                height: dp(0.5) 
+                canvas.before:
+                    Color:
+                        rgba: ( 255/255, 255/255, 255/255,1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [0,5,5,0]
+        BoxLayout:
+            id: nav_bar
+            padding: [dp(15),dp(25),dp(15),dp(0)]
+            orientation: 'vertical' 
+            AnchorLayout: 
+                anchor_y: 'top' 
+                spacing: dp(20) 
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing:dp(20)
+                    size_hint: (1, None)
+                    height: dp(75)
+                    NavTab:
+                        text: 'First View List'
+                        #on launch is activated when state = down
+                        state: 'down'
+                        on_release: app.root.manager.current = 'scrn_first'
+                        #preventing the button from being unclick 
+                        on_release: setattr(self, 'state', 'down')    #self is the button
+                    NavTab:
+                        text:"Second View List"
+                        on_release: app.root.manager.current = 'scrn_second'
+                        #preventing the button from being unclick 
+                        on_release: setattr(self, 'state', 'down')  
+
+    BoxLayout:
+        size_hint_x: root.width
+        orientation: 'vertical'
+        spacing: dp(20)
+        padding: [dp(0),dp(20),dp(20),dp(20)]
+        BoxLayout:  
+            id: user_id
+            size_hint_y: None
+            height: dp(50)
+            #setting side user window background color
+            canvas.before:
+                Color:
+                    rgba: ( 23/255, 23/255, 23/255,1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [5]
+        BoxLayout:  
+            padding: [dp(0),dp(20),dp(20),dp(20)]
+            #setting view  window background color
+            canvas.before:
+                Color: 
+                    rgba: ( 23/255, 23/255, 23/255,1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [5]
+            ScreenManager:
+                id: scrn_mngr
+                Screen:
+                    name: 'scrn_first'
+                    FirstView: 
+                        id: scrn_first
+                Screen:
+                    name: 'scrn_second' 
+                    SecondView: 
+                        id: scrn_second

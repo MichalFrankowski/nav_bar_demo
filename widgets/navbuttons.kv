@@ -1,0 +1,27 @@
+#: kivy 2.0
+#: include widgets/lebels.kv
+
+<NavTab>:
+    id:butt
+    background_normal: ''
+    background_down: ''
+    background_color: [0,0,0,0]
+    #group is important, it allows only for one button to be pressed
+    group: 'tabs'
+    size_hint_y: None
+    height: dp(30)
+    spacing: dp(20)
+    canvas.before:  
+        Color:
+            rgba: self.background if self.state == 'normal' else rgba("#0a4170")
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [2,2,2,2]
+    Text:
+        halign: 'center'
+        valign: 'middle'
+        text: root.text
+        color: rgba("#FFFFFF") 
+        font_size: sp(13)
+        font_name: 'Verdana'
