@@ -17,6 +17,7 @@ from kivy.properties import ObjectProperty
 
 #main view of the app
 class navbardemo(BoxLayout,Screen):
+   manager = ObjectProperty(None) 
    def __init__(self, **kwargs):
        super().__init__(**kwargs)  
 

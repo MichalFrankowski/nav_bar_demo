@@ -11,6 +11,7 @@ ScreenManager:
     SecondView:
 
 <navbardemo>: 
+    manager: manager
     spacing: dp(20)
    # setting main window background color
     canvas.before:
@@ -113,7 +114,7 @@ ScreenManager:
                     size: self.size
                     radius: [5]
             ScreenManager:
-                id: scrn_mngr
+                id: manager
                 Screen:
                     name: 'scrn_first'
                     FirstView: 
