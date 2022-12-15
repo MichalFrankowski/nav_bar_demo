@@ -87,8 +87,8 @@ ScreenManager:
                         on_release: setattr(self, 'state', 'down')  
 
     BoxLayout:
-        size_hint_x: root.width
         orientation: 'vertical'
+        size_hint_x: root.width
         spacing: dp(20)
         padding: [dp(0),dp(20),dp(20),dp(20)]
         BoxLayout:  
@@ -103,8 +103,22 @@ ScreenManager:
                     pos: self.pos
                     size: self.size
                     radius: [5]
-        BoxLayout:  
-            padding: [dp(0),dp(20),dp(20),dp(20)]
+        BoxLayout:
+            orientation: "vertical"
+            AnchorLayout: 
+                size_hint: 1,1
+                anchor_y: "top"
+                anchor_x: "center"
+                padding: [dp(0),dp(20),dp(0),dp(0)]  
+                Button:
+                    text: 'Main View Button'
+                    on_press: root.get_file()
+                    size_hint: 0.5, None
+                    height: dp(20)
+                    pos_hint:{'center_x':0.5, 'center_y':0.5}
+        BoxLayout: 
+            orientation: "vertical"
+            #padding: [dp(0),dp(20),dp(20),dp(20)]
             #setting view  window background color
             canvas.before:
                 Color: 
